@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <RimLureSettingsSearch>Biome Search Settings</RimLureSettingsSearch>
+  <SearchRadius>Search radius</SearchRadius>
+  <SearchRadiusTiles>tiles.</SearchRadiusTiles>
+  <SearchRadiusParenthesis>(0 = only the biome the colony is on)</SearchRadiusParenthesis>
+  <RimLureSettingsCosts>Cost Settings</RimLureSettingsCosts>
+  <CostModifierLocalAnimals>Cost modifier for local animals (default = 75%)</CostModifierLocalAnimals>
+  <CostModifierExoticAnimals>Cost modifier for exotic animals (default = 175%)</CostModifierExoticAnimals>
+  <SteelCost>Launch steel cost</SteelCost>
+  <ComponentCost>Launch component cost</ComponentCost>
+  <ChemCost>Launch chemfuel cost</ChemCost>
+  <RimLureSettingsAnimalArrival>Animal Arrival Settings</RimLureSettingsAnimalArrival>
+  <MinDaysForAnimalsToArrive>Minimum days for animals to arrive:</MinDaysForAnimalsToArrive>
+  <MaxDaysForAnimalsToArrive>Maximum days for animals to arrive:</MaxDaysForAnimalsToArrive>
+  <RimLureSettingsCooldown>Optional Cooldown Settings</RimLureSettingsCooldown>
+  <RimLureDoCoolDownBetweenLaunches>Do cooldown between launches?</RimLureDoCoolDownBetweenLaunches>
+  <CooldownDaysBetweenLaunches>Cooldown in days between launches:</CooldownDaysBetweenLaunches>
+  <RimLureLocalAnimals>Local Animals</RimLureLocalAnimals>
+  <RimLureExoticAnimals>Exotic Animals</RimLureExoticAnimals>
+  <RimLureNoAnimals>No animals found</RimLureNoAnimals>
+  <RimLureLocalBiomes>Local Biomes</RimLureLocalBiomes>
+  <RimLureExoticBiomes>Exotic Biomes</RimLureExoticBiomes>
+  <RimLureNoAnimalsSelected>No animals selected</RimLureNoAnimalsSelected>
+  <RimLureLuresRequired>Canisters required</RimLureLuresRequired>
+  <RimLureLaunchLure>Launch pheromone payload</RimLureLaunchLure>
+  <RimLureCooldownFinished>Launcher ready</RimLureCooldownFinished>
+  <RimLureManagePreset>Manage Payload</RimLureManagePreset>
+  <RimLureManagePresetDesc>Select which and how many animals will be attracted by the payload</RimLureManagePresetDesc>
+  <RimLureLaunchStarted>Payload initialization started</RimLureLaunchStarted>
+  <RimLurePrepareLaunch>Prepare launch</RimLurePrepareLaunch>
+  <RimLureSelectedAnimals>Selected animals:\n</RimLureSelectedAnimals>
+  <RimLurePrepareLaunchDesc>The following components are required to launch the payload:\n {0}</RimLurePrepareLaunchDesc>
+  <RimLureCooldownOngoing>Launcher is not ready yet, time left {0}.</RimLureCooldownOngoing>
+  <RimLureInactive>Launcher inactive</RimLureInactive>
+  <RimLureReadyToLaunch>Ready to launch</RimLureReadyToLaunch>
+  <RimLurePheromoneAnimalWalkInLabel>A {0} walks in</RimLurePheromoneAnimalWalkInLabel>
+  <RimLurePheromoneAnimalsWalkInLabel>{0} walk in</RimLurePheromoneAnimalsWalkInLabel>
+  <RimLurePheromoneAnimalsWalkIn>A group of {0}, attracked by the scent of the pheromones, arrived to the colony.\n\nThey seem to be easier to tame than regular specimens.</RimLurePheromoneAnimalsWalkIn>
+  <RimLurePheromoneAnimalWalkIn>A {0}, attracked by the scent of the pheromones, arrived to the colony.\n\It seem to be easier to tame than regular specimens.</RimLurePheromoneAnimalWalkIn>
+
+  <RimLurePayLoadLaunched>Pheromone payload launched, animals are sure to arrive soon.</RimLurePayLoadLaunched>
+  <RimLureNeedFuel>Not enough fuel to launch payload</RimLureNeedFuel>
+</LanguageData>

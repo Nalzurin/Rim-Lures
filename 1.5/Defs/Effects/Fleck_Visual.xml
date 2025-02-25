@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>SPFRocketSmoke</defName>
+    <graphicData>
+      <texPath>Things/Mote/Smoke</texPath>
+    </graphicData>
+    <altitudeLayer>Projectile</altitudeLayer>
+    <solidTime>0.2</solidTime>
+    <fadeOutTime>0.2</fadeOutTime>
+    <growthRate>1.2</growthRate>
+  </FleckDef>
+
+</Defs>

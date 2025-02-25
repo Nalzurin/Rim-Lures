@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>SPFluidCanister</defName>
+    <label>smart pheromone fluid canister</label>
+    <description>Canister containing specially designed smart pheromone fluid, capable of attracting any kind of wild animal when programmed</description>
+    <graphicData>
+      <texPath>Things/Item/Manufactured/SPFluidCanister</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.85</drawSize>
+    </graphicData>
+    <techLevel>Industrial</techLevel>
+    <stackLimit>50</stackLimit>
+    <statBases>
+      <MarketValue>4</MarketValue>
+      <Mass>0.50</Mass>
+      <Flammability>0.1</Flammability>
+      <WorkToMake>700</WorkToMake>
+    </statBases>
+  </ThingDef>
+  <RecipeDef>
+    <defName>Make_SPFCanister</defName>
+    <label>make SPF canisters</label>
+    <description>Make smart pheromone fluid canister by combining neutroamine and food matter.</description>
+    <jobString>Making SPF canisters.</jobString>
+    <workAmount>450</workAmount>
+    <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+    <effectWorking>Cook</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <researchPrerequisite>SmartPheromoneSystems</researchPrerequisite>
+    <allowMixingIngredients>true</allowMixingIngredients>
+    <ingredientValueGetterClass>IngredientValueGetter_Nutrition</ingredientValueGetterClass>
+    <ingredients>
+      <li>
+        <filter>
+          <customSummary>feedstock</customSummary>
+          <categories>
+            <li>FoodRaw</li>
+            <li>MeatRaw</li>
+            <li>AnimalProductRaw</li>
+            <li>PlantFoodRaw</li>
+            <li>Foods</li>
+            <li>PlantMatter</li>
+          </categories>
+        </filter>
+        <count>1</count>
+      </li>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>Neutroamine</li>
+          </thingDefs>
+        </filter>
+        <count>1</count>
+      </li>
+    </ingredients>
+    <products>
+      <SPFluidCanister>10</SPFluidCanister>
+    </products>
+    <fixedIngredientFilter>
+      <categories>
+        <li>FoodRaw</li>
+        <li>MeatRaw</li>
+        <li>AnimalProductRaw</li>
+        <li>PlantFoodRaw</li>
+        <li>Foods</li>
+        <li>PlantMatter</li>
+      </categories>
+      <thingDefs>
+        <li>Hay</li>
+      </thingDefs>
+      <disallowedThingDefs>
+        <li>Dye</li>
+      </disallowedThingDefs>
+    </fixedIngredientFilter>
+    <defaultIngredientFilter>
+      <categories>
+        <li>FoodRaw</li>
+        <li>MeatRaw</li>
+        <li>AnimalProductRaw</li>
+        <li>PlantFoodRaw</li>
+        <li>Foods</li>
+        <li>PlantMatter</li>
+      </categories>
+      <disallowedCategories>
+        <li>EggsFertilized</li>
+      </disallowedCategories>
+      <disallowedThingDefs>
+        <li>InsectJelly</li>
+      </disallowedThingDefs>
+    </defaultIngredientFilter>
+    <workSkill>Intellectual</workSkill>
+    <skillRequirements>
+      <Crafting>4</Crafting>
+      <Intellectual>4</Intellectual>
+    </skillRequirements>
+  </RecipeDef>
+
+</Defs>

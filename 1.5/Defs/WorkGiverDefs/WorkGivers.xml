@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- Haul to -->
+  <WorkGiverDef ParentName="HaulToBase">
+    <defName>HaulToSPLauncher</defName>
+    <label>haul ingredients to pheromone launcher</label>
+    <giverClass>RimLures.WorkGiver_HaulToPheromoneLauncher</giverClass>
+  </WorkGiverDef>
+</Defs>

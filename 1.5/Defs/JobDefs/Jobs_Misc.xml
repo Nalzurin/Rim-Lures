@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <JobDef>
+    <defName>LaunchSPFPayload</defName>
+    <driverClass>RimLures.JobDriver_LaunchPayload</driverClass>
+    <reportString>launching SPF payload.</reportString>
+  </JobDef>
+  
+</Defs>
