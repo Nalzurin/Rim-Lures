@@ -11,11 +11,11 @@ using Verse;
 
 namespace RimLures
 {
+    [StaticConstructorOnStartup]
     public class RimLure_Mod : Mod
     {
 
         public static RimLure_Settings settings;
-
         public RimLure_Mod(ModContentPack content)
             : base(content)
         {

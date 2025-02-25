@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Building_Lure.cs" />
     <Compile Include="Dialog_LureMenu.cs" />
+    <Compile Include="Dialog_ManageWhitelist.cs" />
     <Compile Include="FluidRocketLeaving.cs" />
     <Compile Include="IncidentWorker_PheromoneAnimalsWalkIn.cs" />
     <Compile Include="JobDriver_LaunchPayload.cs" />

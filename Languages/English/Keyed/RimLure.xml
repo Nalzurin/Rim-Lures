@@ -41,4 +41,7 @@
 
   <RimLurePayLoadLaunched>Pheromone payload launched, animals are sure to arrive soon.</RimLurePayLoadLaunched>
   <RimLureNeedFuel>Not enough fuel to launch payload</RimLureNeedFuel>
+  <RimLureWhitelisted>Whitelisted</RimLureWhitelisted>
+  <RimLureSettingsBiomelessWhitelist>Biomeless Animals</RimLureSettingsBiomelessWhitelist>
+  <RimLureSettingsBiomelessWhitelistManage>Manage Whitelist</RimLureSettingsBiomelessWhitelistManage>
 </LanguageData>

@@ -36,11 +36,12 @@ namespace RimLures
     [StaticConstructorOnStartup]
     public static class LureHelper
     {
-
+        public static List<PawnKindDef> biomelessAnimals = [];
         public static Dictionary<PawnKindDef, AnimalPriceInLures> animalPrices = [];
         static LureHelper()
         {
             CalculatePrices();
+            GetBiomelessAnimals();
         }
         static void CalculatePrices()
         {
@@ -62,6 +63,14 @@ namespace RimLures
 
         }
 
+        static void GetBiomelessAnimals()
+        {
+            biomelessAnimals = DefDatabase<PawnKindDef>.AllDefs.Where(c => c.RaceProps.Animal == true && c.RaceProps.Dryad == false).Except(animalPrices.Keys).ToList();
+            foreach(PawnKindDef def in biomelessAnimals)
+            {
+                Log.Message(def.LabelCap);
+            }
+        }
         public static List<BiomeDef> GetLocalBiomesInRange(Building_Lure lure)
         {
             int startTileID = lure.Map.Tile;
