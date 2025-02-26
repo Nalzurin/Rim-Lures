@@ -34,7 +34,7 @@ namespace RimLures
         private string _maxDaysForAnimalsToArrive;
         private string _cooldownDaysBetweenLaunches;
         private Vector2 _scrollPosition;
-        public static List<string> whiteListedAnimals = [];
+        public static List<string> whiteListedAnimals = new List<string> { "Thrumbo", "AA_Gallatross", "RoyalThrumbo" };
         public override void ExposeData()
         {
 
