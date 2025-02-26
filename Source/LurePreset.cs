@@ -56,9 +56,11 @@ namespace RimLures
             int result = 0;
             foreach (PawnKindDef animal in selectedAnimals.Keys)
             {
+
                 int count = selectedAnimals[animal];
                 int price = 0;
-                if(localBiomes.SelectMany(c=>c.AllWildAnimals).Distinct().ToList().Contains(animal))
+
+                if (localBiomes.SelectMany(c => c.AllWildAnimals).Distinct().ToList().Contains(animal))
                 {
                     price = LureHelper.animalPrices[animal].localPrice;
                 }
@@ -66,13 +68,14 @@ namespace RimLures
                 {
                     price = LureHelper.animalPrices[animal].exoticPrice;
                 }
-                result += count * price; 
+
+                result += count * price;
             }
             return result;
         }
         public void UpdateIngredients()
         {
-            
+
             ingredients = [new ThingDefCountClass(ThingDefOf.ComponentIndustrial, RimLure_Settings.componentCost).ToIngredientCount(), new ThingDefCountClass(ThingDefOf.Steel, RimLure_Settings.steelCost).ToIngredientCount(), new ThingDefCountClass(DefOfs.SPFluidCanister, lureCost).ToIngredientCount()];
         }
 

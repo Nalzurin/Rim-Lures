@@ -36,11 +36,13 @@ namespace RimLures
     [StaticConstructorOnStartup]
     public static class LureHelper
     {
-
+        public static List<PawnKindDef> biomelessAnimals = [];
         public static Dictionary<PawnKindDef, AnimalPriceInLures> animalPrices = [];
         static LureHelper()
         {
             CalculatePrices();
+            GetBiomelessAnimals();
+
         }
         static void CalculatePrices()
         {
@@ -55,13 +57,46 @@ namespace RimLures
                         Log.Message(def);
                     }
 
-                    float animalPrice = Mathf.Max(def.race.BaseMarketValue / 4/*DefOfs.AnimalLure.BaseMarketValue*/, 1f);
+                    float animalPrice = Mathf.Max(def.race.BaseMarketValue / DefOfs.SPFluidCanister.BaseMarketValue, 1f);
                     animalPrices[def] = new AnimalPriceInLures((int)(animalPrice * RimLure_Settings.costModifierLocalAnimals), (int)(animalPrice * RimLure_Settings.costModifierExoticAnimals));
                 }
             }
 
         }
 
+        public static void AddAnimalPrice(PawnKindDef def)
+        {
+            if (!animalPrices.ContainsKey(def))
+            {
+                if (def.race == null)
+                {
+                    Log.Message(def);
+                }
+
+                float animalPrice = Mathf.Max(def.race.BaseMarketValue / DefOfs.SPFluidCanister.BaseMarketValue, 1f);
+                animalPrices[def] = new AnimalPriceInLures((int)(animalPrice * RimLure_Settings.costModifierLocalAnimals), (int)(animalPrice * RimLure_Settings.costModifierExoticAnimals));
+            }
+        }
+        public static void RemoveAnimalPrice(PawnKindDef def)
+        {
+            if (animalPrices.ContainsKey(def))
+            {
+                if (def.race == null)
+                {
+                    Log.Message(def);
+                }
+                animalPrices.Remove(def);
+            }
+        }
+        static void GetBiomelessAnimals()
+        {
+            biomelessAnimals = DefDatabase<PawnKindDef>.AllDefs.Where(c => c.RaceProps.Animal == true && c.RaceProps.Dryad == false).Except(animalPrices.Keys).ToList();
+            foreach (PawnKindDef def in biomelessAnimals)
+            {
+                Log.Message(def.LabelCap);
+                AddAnimalPrice(def);
+            }
+        }
         public static List<BiomeDef> GetLocalBiomesInRange(Building_Lure lure)
         {
             int startTileID = lure.Map.Tile;
@@ -106,7 +141,7 @@ namespace RimLures
                     }
                 }
             }
-            foreach(BiomeDef def in result)
+            foreach (BiomeDef def in result)
             {
                 Log.Message(def.defName);
             }

@@ -27,7 +27,6 @@ namespace RimLures
         public static float minDaysForAnimalsToArrive = 1;
         public static float maxDaysForAnimalsToArrive = 5;
 
-
         private string _steelCost;
         private string _componentCost;
         private string _chemCost;
@@ -35,6 +34,7 @@ namespace RimLures
         private string _maxDaysForAnimalsToArrive;
         private string _cooldownDaysBetweenLaunches;
         private Vector2 _scrollPosition;
+        public static List<string> whiteListedAnimals = [];
         public override void ExposeData()
         {
 
@@ -51,7 +51,7 @@ namespace RimLures
 
             Scribe_Values.Look(ref minDaysForAnimalsToArrive, "minDaysForAnimalsToArrive", defaultValue: 1, forceSave: true);
             Scribe_Values.Look(ref maxDaysForAnimalsToArrive, "maxDaysForAnimalsToArrive", defaultValue: 5, forceSave: true);
-
+            Scribe_Collections.Look(ref whiteListedAnimals, "whiteListedAnimals", LookMode.Value);
             base.ExposeData();
         }
 
@@ -124,7 +124,17 @@ namespace RimLures
                 listing_Standard.TextFieldNumeric(ref cooldownDaysBetweenLaunches, ref _cooldownDaysBetweenLaunches, 0, 10);
 
             }
+            listing_Standard.Gap(5f);
+            using (new TextBlock(GameFont.Medium))
+            {
+                listing_Standard.Label("RimLureSettingsBiomelessWhitelist".Translate());
 
+            }
+            listing_Standard.Gap();
+            if (listing_Standard.ButtonText("RimLureSettingsBiomelessWhitelistManage".Translate()))
+            {
+                Find.WindowStack.Add(new Dialog_ManageWhitelist());
+            }
 
             listing_Standard.End();
             Widgets.EndScrollView();

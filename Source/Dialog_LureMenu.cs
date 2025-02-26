@@ -142,7 +142,7 @@ namespace RimLures
                     }
                     Log.Message("Filtered animals not in local biomes");
                     Log.Message(animalsFiltered.Except(localAnimals).Count());
-                    if (animalsFiltered.Except(localAnimals).Any())
+                    if (animalsFiltered.Except(localAnimals).Except(LureHelper.biomelessAnimals.Where(c => RimLure_Settings.whiteListedAnimals.Contains(c.defName))).Any())
                     {
                         Rect exoticBiomesRect = new Rect(animalsSelectionRect.x, (boxHeight) * (float)y, animalsSelectionRect.width, boxHeight);
                         y++;
@@ -153,7 +153,20 @@ namespace RimLures
                             Text.Anchor = TextAnchor.UpperLeft;
 
                         }
-                        DoEntries(animalsFiltered.Except(localAnimals).ToList(), animalsSelectionRect, false);
+                        DoEntries(animalsFiltered.Except(localAnimals).Except(LureHelper.biomelessAnimals.Where(c=>RimLure_Settings.whiteListedAnimals.Contains(c.defName))).ToList(), animalsSelectionRect, false);
+                    }
+                    if (LureHelper.biomelessAnimals.Where(c => RimLure_Settings.whiteListedAnimals.Contains(c.defName) && animalsFiltered.Contains(c)).Any())
+                    {
+                        Rect exoticBiomesRect = new Rect(animalsSelectionRect.x, (boxHeight) * (float)y, animalsSelectionRect.width, boxHeight);
+                        y++;
+                        using (new TextBlock(GameFont.Medium))
+                        {
+                            Text.Anchor = TextAnchor.MiddleLeft;
+                            Widgets.Label(exoticBiomesRect, "RimLureBiomelessAnimals".Translate());
+                            Text.Anchor = TextAnchor.UpperLeft;
+
+                        }
+                        DoEntries(LureHelper.biomelessAnimals.Where(c => RimLure_Settings.whiteListedAnimals.Contains(c.defName) && animalsFiltered.Contains(c)).ToList(), animalsSelectionRect, false);
                     }
                 }
                 else
@@ -242,6 +255,20 @@ namespace RimLures
 
                     }
 
+                }
+                if (LureHelper.biomelessAnimals.Where(c => RimLure_Settings.whiteListedAnimals.Contains(c.defName)).Any())
+                {
+                    Rect labelRect = new Rect(animalsSelectionRect.x, boxHeight * (float)y, animalsSelectionRect.width, boxHeight);
+                    y++;
+                    using (new TextBlock(GameFont.Medium))
+                    {
+                        Text.Anchor = TextAnchor.MiddleLeft;
+                        Widgets.Label(labelRect, "RimLureBiomeless".Translate());
+                        Text.Anchor = TextAnchor.UpperLeft;
+
+                    }
+
+                    DoEntries(LureHelper.biomelessAnimals.Where(c => RimLure_Settings.whiteListedAnimals.Contains(c.defName)).ToList(), animalsSelectionRect, false);
                 }
             }
             scrollRectAnimalSelectionHeight = boxHeight * (float)y;
@@ -417,7 +444,7 @@ namespace RimLures
                         x = 0;
                         y++;
                     }
-                    // Log.Message("Checked if should be on new line");
+                    //Log.Message("Checked if should be on new line");
                     Rect boxRect = new Rect(boxWidth * (float)x, (boxHeight * (float)y), boxWidth, boxHeight);
                     if (!first)
                     {
