@@ -118,6 +118,7 @@ namespace RimLures
                     if (Widgets.ButtonText(toggle, "Yes".Translate(), true))
                     {
                         RimLure_Settings.whiteListedAnimals.Remove(def.defName);
+                        LureHelper.RemoveAnimalPrice(def);
                     }
 
                 }
@@ -126,7 +127,7 @@ namespace RimLures
                     if (Widgets.ButtonText(toggle, "No".Translate(), true))
                     {
                         RimLure_Settings.whiteListedAnimals.Add(def.defName);
-
+                        LureHelper.AddAnimalPrice(def);
                     }
 
                 }
