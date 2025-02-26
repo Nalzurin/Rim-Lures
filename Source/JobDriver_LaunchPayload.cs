@@ -18,11 +18,10 @@ namespace RimLures
         {
             return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
         }
-
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
-            this.FailOn(() => Building.State != LureState.Active);
+            this.FailOn(() => Building.State != LureState.Active || Building.interacter == null);
             yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
             yield return Toils_General.WaitWith(TargetIndex.A, LaunchDelay, useProgressBar: true);
             yield return Toils_General.Do(delegate

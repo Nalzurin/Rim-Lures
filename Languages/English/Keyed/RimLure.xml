@@ -46,4 +46,9 @@
   <RimLureSettingsBiomelessWhitelistManage>Manage Whitelist</RimLureSettingsBiomelessWhitelistManage>
   <RimLureBiomeless>Biomeless</RimLureBiomeless>
   <RimLureBiomelessAnimals>Biomeless Animals</RimLureBiomelessAnimals>
+  <RimLureLaunchPayloadLabel>Launch Payload</RimLureLaunchPayloadLabel>
+  <RimLureLaunchPayloadDesc>Select a pawn who will launch the payload</RimLureLaunchPayloadDesc>
+  <RimLureNoAvailablePawns>No available pawns</RimLureNoAvailablePawns>
+  <RimLureCancelLaunchLabel>Cancel launch</RimLureCancelLaunchLabel>
+  <RimLureCancelLaunchDesc>Stop {0} from launching</RimLureCancelLaunchDesc>
 </LanguageData>
