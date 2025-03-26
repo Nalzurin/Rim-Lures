@@ -199,7 +199,7 @@ namespace RimLures
             //Log.Message("Ticking");
             base.Tick();
             LureState state = State;
-            Log.Message(AllRequiredIngredientsLoaded);
+            //Log.Message(AllRequiredIngredientsLoaded);
             if (state == LureState.Cooldown)
             {
                 coolDownTicksLeft--;

@@ -3,7 +3,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>SPLauncher</defName>
     <label>smart pheromone launcher</label>
-    <description>A compact launch system designed to launch smart pheromone canisters into the atmosphere. By programming the canister with specific parameters, the launch pad ensures a targeted dispersal, luring wild animals of almost any kind to the colony.\\nRequires 500W when active and fuel to launch. </description>
+    <description>A compact launch system designed to launch smart pheromone canisters into the atmosphere. By programming the canister with specific parameters, the launch pad ensures a targeted dispersal, luring wild animals of almost any kind to the colony.\\nRequires 500W when active and fuel to launch.</description>
     <graphicData>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>2.85</drawSize>

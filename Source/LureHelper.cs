@@ -54,7 +54,7 @@ namespace RimLures
                 {
                     if (def.race == null)
                     {
-                        Log.Message(def);
+                        //Log.Message(def);
                     }
 
                     float animalPrice = Mathf.Max(def.race.BaseMarketValue / DefOfs.SPFluidCanister.BaseMarketValue, 1f);
@@ -70,7 +70,7 @@ namespace RimLures
             {
                 if (def.race == null)
                 {
-                    Log.Message(def);
+                    //Log.Message(def);
                 }
 
                 float animalPrice = Mathf.Max(def.race.BaseMarketValue / DefOfs.SPFluidCanister.BaseMarketValue, 1f);
@@ -83,7 +83,7 @@ namespace RimLures
             {
                 if (def.race == null)
                 {
-                    Log.Message(def);
+                    //Log.Message(def);
                 }
                 animalPrices.Remove(def);
             }
@@ -93,7 +93,7 @@ namespace RimLures
             biomelessAnimals = DefDatabase<PawnKindDef>.AllDefs.Where(c => c.RaceProps.Animal == true && c.RaceProps.Dryad == false).Except(animalPrices.Keys).ToList();
             foreach (PawnKindDef def in biomelessAnimals)
             {
-                Log.Message(def.LabelCap);
+                //Log.Message(def.LabelCap);
                 AddAnimalPrice(def);
             }
         }
@@ -141,10 +141,10 @@ namespace RimLures
                     }
                 }
             }
-            foreach (BiomeDef def in result)
+/*            foreach (BiomeDef def in result)
             {
                 Log.Message(def.defName);
-            }
+            }*/
             return result;
         }
 
