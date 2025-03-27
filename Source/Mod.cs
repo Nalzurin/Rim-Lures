@@ -25,7 +25,7 @@ namespace RimLures
 
         public override string SettingsCategory()
         {
-            return "Rim Lure";
+            return "Smart Animal Lures";
         }
 
 
