@@ -140,8 +140,8 @@ namespace RimLures
                         }
                         DoEntries(localAnimals, animalsSelectionRect, true);
                     }
-                    Log.Message("Filtered animals not in local biomes");
-                    Log.Message(animalsFiltered.Except(localAnimals).Count());
+                    //Log.Message("Filtered animals not in local biomes");
+                    //Log.Message(animalsFiltered.Except(localAnimals).Count());
                     if (animalsFiltered.Except(localAnimals).Except(LureHelper.biomelessAnimals.Where(c => RimLure_Settings.whiteListedAnimals.Contains(c.defName))).Any())
                     {
                         Rect exoticBiomesRect = new Rect(animalsSelectionRect.x, (boxHeight) * (float)y, animalsSelectionRect.width, boxHeight);

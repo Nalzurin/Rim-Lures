@@ -34,7 +34,7 @@ namespace RimLures
         private string _maxDaysForAnimalsToArrive;
         private string _cooldownDaysBetweenLaunches;
         private Vector2 _scrollPosition;
-        public static List<string> whiteListedAnimals = [];
+        public static List<string> whiteListedAnimals = new List<string> { "Thrumbo", "AA_Gallatross", "RoyalThrumbo" };
         public override void ExposeData()
         {
 
@@ -51,7 +51,7 @@ namespace RimLures
 
             Scribe_Values.Look(ref minDaysForAnimalsToArrive, "minDaysForAnimalsToArrive", defaultValue: 1, forceSave: true);
             Scribe_Values.Look(ref maxDaysForAnimalsToArrive, "maxDaysForAnimalsToArrive", defaultValue: 5, forceSave: true);
-            Scribe_Collections.Look(ref whiteListedAnimals, "whiteListedAnimals", LookMode.Value);
+            Scribe_Collections.Look(ref whiteListedAnimals, "whiteListedAnimals", LookMode.Value, new List<string> { "Thrumbo", "AA_Gallatross", "RoyalThrumbo" });
             base.ExposeData();
         }
 

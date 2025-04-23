@@ -3,7 +3,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>SPLauncher</defName>
     <label>smart pheromone launcher</label>
-    <description>In the advanced Glitterworlds where human technology is at its highest, the Bionix Automator stands as a pinnacle of medical innovation. This advanced device automates the complex and delicate process of installing bionic parts into human bodies. Developed by a coalition of humanity’s brightest minds, the Bionix Automator ensures that every procedure is precise, efficient, and safe.\n\nThe Bionix Automator is a sleek, multi-functional unit housed in a reinforced alloy casing. It features a sophisticated array of robotic arms, each equipped with a variety of surgical tools, sensors, and sterile applicators to ensure perfect surgery with no chance of failure.\n\nThe implanter consumes 1000W of power while working, but only 50W on standby.</description>
+    <description>A compact launch system designed to launch smart pheromone canisters into the atmosphere. By programming the canister with specific parameters, the launch pad ensures a targeted dispersal, luring wild animals of almost any kind to the colony.\\nRequires 500W when active and fuel to launch.</description>
     <graphicData>
       <graphicClass>Graphic_Multi</graphicClass>
       <drawSize>2.85</drawSize>

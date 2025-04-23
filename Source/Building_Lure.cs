@@ -34,6 +34,7 @@ namespace RimLures
         private int coolDownTicksLeft = 0;
         private bool initLaunch;
 
+        public Pawn interacter;
 
         private bool debugDisableNeedForIngredients;
 
@@ -41,6 +42,7 @@ namespace RimLures
         public static readonly Texture2D CancelLoadingIcon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel");
         public static readonly Texture2D ManagePayloadIcon = ContentFinder<Texture2D>.Get("UI/Designators/ManagePayload");
         public static readonly Texture2D PreparePayloadIcon = ContentFinder<Texture2D>.Get("UI/Designators/PreparePayload");
+        public static readonly Texture2D LaunchPayloadIcon = ContentFinder<Texture2D>.Get("UI/Designators/LaunchPayload");
         public bool PowerOn => this.TryGetComp<CompPowerTrader>().PowerOn;
 
 
@@ -178,7 +180,7 @@ namespace RimLures
             {
                 yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("RimLureLaunchLure".Translate(), delegate
                 {
-                    selPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefOfs.LaunchSPFPayload, this), JobTag.MiscWork);
+                    GiveJob(selPawn);
                 }), selPawn, this);
             }
         }
@@ -197,7 +199,7 @@ namespace RimLures
             //Log.Message("Ticking");
             base.Tick();
             LureState state = State;
-            Log.Message(AllRequiredIngredientsLoaded);
+            //Log.Message(AllRequiredIngredientsLoaded);
             if (state == LureState.Cooldown)
             {
                 coolDownTicksLeft--;
@@ -281,7 +283,59 @@ namespace RimLures
                 command_Action3.activateSound = SoundDefOf.Designate_Cancel;
                 yield return command_Action3;
             }
-
+            if (State == LureState.Active)
+            {
+                if (interacter == null)
+                {
+                    Command_Action command_ActionActivate = new Command_Action();
+                    command_ActionActivate.defaultLabel = "RimLureLaunchPayloadLabel".Translate() + "...";
+                    command_ActionActivate.defaultDesc = "RimLureLaunchPayloadDesc".Translate();
+                    command_ActionActivate.icon = LaunchPayloadIcon;
+                    command_ActionActivate.action = delegate
+                    {
+                        List<FloatMenuOption> list = new List<FloatMenuOption>();
+                        IReadOnlyList<Pawn> allPawnsSpawned = base.Map.mapPawns.AllPawnsSpawned;
+                        for (int j = 0; j < allPawnsSpawned.Count; j++)
+                        {
+                            Pawn pawn = allPawnsSpawned[j];
+                            AcceptanceReport acceptanceReport = CanAcceptPawn(pawn);
+                            if (!acceptanceReport.Accepted)
+                            {
+                                if (!acceptanceReport.Reason.NullOrEmpty())
+                                {
+                                    list.Add(new FloatMenuOption(pawn.LabelShortCap + ": " + acceptanceReport.Reason, null, pawn, Color.white));
+                                }
+                            }
+                            else
+                            {
+                                list.Add(new FloatMenuOption(pawn.LabelShortCap, delegate
+                                {
+                                    GiveJob(pawn);
+                                    interacter = pawn;
+                                }, pawn, Color.white));
+                            }
+                        }
+                        if (!list.Any())
+                        {
+                            list.Add(new FloatMenuOption("RimLureNoAvailablePawns".Translate(), null));
+                        }
+                        Find.WindowStack.Add(new FloatMenu(list));
+                    };
+                    yield return command_ActionActivate;
+                }
+                else
+                {
+                    Command_Action command_ActionCancelActivate = new Command_Action();
+                    command_ActionCancelActivate.defaultLabel = "RimLureCancelLaunchLabel".Translate();
+                    command_ActionCancelActivate.defaultDesc = "RimLureCancelLaunchDesc".Translate(interacter.LabelCap);
+                    command_ActionCancelActivate.icon = CancelLoadingIcon;
+                    command_ActionCancelActivate.action = delegate
+                    {
+                        interacter = null;
+                    };
+                    yield return command_ActionCancelActivate;
+                }
+            }
             if (!DebugSettings.ShowDevGizmos)
             {
                 yield break;
@@ -302,8 +356,25 @@ namespace RimLures
                     coolDownTicksLeft = 0;
                 };
             }
-        }
 
+        }
+        public AcceptanceReport CanAcceptPawn(Pawn pawn)
+        {
+            if (!pawn.IsColonist && !pawn.IsSlaveOfColony && !pawn.IsPrisonerOfColony && (!pawn.IsColonyMutant || !pawn.IsGhoul))
+            {
+                return false;
+            }
+            if (interacter != null && interacter != pawn)
+            {
+                return false;
+            }
+            return true;
+        }
+        private void GiveJob(Pawn p)
+        {
+            interacter = p;
+            p.jobs.TryTakeOrderedJob(JobMaker.MakeJob(DefOfs.LaunchSPFPayload, this), JobTag.MiscWork);
+        }
 
 
         public override string GetInspectString()
@@ -336,6 +407,10 @@ namespace RimLures
                 case LureState.Active:
                     stringBuilder.AppendLineIfNotEmpty();
                     stringBuilder.Append("RimLureReadyToLaunch".Translate());
+                    if(interacter != null)
+                    {
+                        stringBuilder.Append("RimLureWaitingForPawn".Translate(interacter.LabelCap));
+                    }
                     break;
 
             }
