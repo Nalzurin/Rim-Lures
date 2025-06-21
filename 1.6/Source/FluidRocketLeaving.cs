@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
-using VFECore;
 
 namespace RimLures
 {
     public class FluidRocketLeaving : FlyShipLeaving
     {
         private Effecter flightEffecter;
-        public override void Tick()
+        protected override void Tick()
         {
             if (flightEffecter == null)
             {

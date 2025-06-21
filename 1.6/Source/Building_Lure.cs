@@ -1,20 +1,10 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.AI;
-using Verse.Noise;
-using Verse.Sound;
-using static HarmonyLib.Code;
-using static System.Collections.Specialized.BitVector32;
-using static System.Net.Mime.MediaTypeNames;
-using static UnityEngine.Random;
-
 namespace RimLures
 {
 
@@ -194,7 +184,7 @@ namespace RimLures
             return false;
         }
 
-        public override void Tick()
+        protected override void Tick()
         {
             //Log.Message("Ticking");
             base.Tick();
@@ -360,7 +350,7 @@ namespace RimLures
         }
         public AcceptanceReport CanAcceptPawn(Pawn pawn)
         {
-            if (!pawn.IsColonist && !pawn.IsSlaveOfColony && !pawn.IsPrisonerOfColony && (!pawn.IsColonyMutant || !pawn.IsGhoul))
+            if (!pawn.IsColonist && !pawn.IsSlaveOfColony && !pawn.IsPrisonerOfColony)
             {
                 return false;
             }
@@ -433,12 +423,12 @@ namespace RimLures
             preset.selectedAnimals.Clear();
             preset.UpdateIngredients();
             fuelComp.ConsumeFuel(RimLure_Settings.chemCost);
-            ActiveDropPod activeDropPod = (ActiveDropPod)ThingMaker.MakeThing(ThingDefOf.ActiveDropPod);
-            activeDropPod.Contents = new ActiveDropPodInfo();
+            ActiveTransporter activeDropPod = (ActiveTransporter)ThingMaker.MakeThing(ThingDefOf.ActiveDropPod);
+            activeDropPod.Contents = new ActiveTransporterInfo();
             FlyShipLeaving flyShipLeaving = (FlyShipLeaving)SkyfallerMaker.MakeSkyfaller(DefOfs.SPFRocketLeaving, activeDropPod);
             flyShipLeaving.groupID = 0;
             flyShipLeaving.destinationTile = this.Map.Tile + 1;
-            flyShipLeaving.worldObjectDef = WorldObjectDefOf.TravelingTransportPods;
+            flyShipLeaving.worldObjectDef = WorldObjectDefOf.TravellingTransporters;
             GenSpawn.Spawn(flyShipLeaving, Position, Map);
 
 

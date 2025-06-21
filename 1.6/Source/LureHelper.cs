@@ -115,13 +115,13 @@ namespace RimLures
                 var (currentTileID, distance) = queue.Dequeue();
 
                 // Get the current tile
-                Tile currentTile = grid.tiles[currentTileID];
+                Tile currentTile = grid.Tiles.ElementAt(currentTileID);
                 if (currentTile != null)
                 {
                     // Add the BiomeDef if it's not already in the set
-                    if (uniqueBiomes.Add(currentTile.biome))
+                    if (uniqueBiomes.Add(currentTile.PrimaryBiome))
                     {
-                        result.Add(currentTile.biome);
+                        result.Add(currentTile.PrimaryBiome);
                     }
                 }
 
@@ -129,7 +129,7 @@ namespace RimLures
                 if (distance >= radius) continue;
 
                 // Get the neighbors of the current tile
-                List<int> neighbors = [];
+                List<PlanetTile> neighbors = [];
                 grid.GetTileNeighbors(currentTileID, neighbors);
 
                 foreach (var neighborID in neighbors)

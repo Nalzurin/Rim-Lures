@@ -1,19 +1,9 @@
-﻿using HarmonyLib;
-using RimLures;
-using RimWorld;
-using System;
+﻿using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.ExceptionServices;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using Verse;
-using Verse.Noise;
-using Verse.Sound;
-using static HarmonyLib.Code;
-using static UnityEngine.GraphicsBuffer;
 
 namespace RimLures
 {
