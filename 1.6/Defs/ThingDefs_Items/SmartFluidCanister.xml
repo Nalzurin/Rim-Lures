@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>SPFluidCanister</defName>
+    <label>smart pheromone fluid canister</label>
+    <description>Canister containing specially designed smart pheromone fluid, capable of attracting any kind of wild animal when programmed</description>
+    <graphicData>
+      <texPath>Things/Item/Manufactured/SPFluidCanister</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.85</drawSize>
+    </graphicData>
+    <techLevel>Industrial</techLevel>
+    <stackLimit>50</stackLimit>
+    <statBases>
+      <MarketValue>18</MarketValue>
+      <Mass>0.50</Mass>
+      <Flammability>0.1</Flammability>
+      <WorkToMake>700</WorkToMake>
+    </statBases>
+    <costList>
+      <MedicineHerbal>1</MedicineHerbal>
+      <Neutroamine>1</Neutroamine>
+      <Chemfuel>1</Chemfuel>
+    </costList>
+    <recipeMaker>
+      <workSpeedStat>DrugSynthesisSpeed</workSpeedStat>
+      <workSkill>Intellectual</workSkill>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+      <researchPrerequisite>SmartPheromoneSystems</researchPrerequisite>
+      <skillRequirements>
+        <Crafting>4</Crafting>
+        <Intellectual>4</Intellectual>
+      </skillRequirements>
+      <bulkRecipeCount>10</bulkRecipeCount>
+      <displayPriority>1999</displayPriority>
+    </recipeMaker>
+  </ThingDef>
+</Defs>

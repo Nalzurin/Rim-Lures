@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ResearchProjectDef>
+    <defName>SmartPheromoneSystems</defName>
+    <label>Smart Pheromone Systems</label>
+    <description>Process organic material into compact liquid smart pheromone canisters and launch them in atmosphere to entice any kind of wild animal to your colony.</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>TransportPod</li>
+      <li>MultiAnalyzer</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>5.10</researchViewY>
+  </ResearchProjectDef>
+
+
+</Defs>
