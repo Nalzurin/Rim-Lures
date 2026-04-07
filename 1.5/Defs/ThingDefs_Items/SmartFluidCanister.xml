@@ -11,6 +11,9 @@
     </graphicData>
     <techLevel>Industrial</techLevel>
     <stackLimit>50</stackLimit>
+    <thingCategories>
+      <li>Manufactured</li>
+  </thingCategories>
     <statBases>
       <MarketValue>18</MarketValue>
       <Mass>0.50</Mass>
