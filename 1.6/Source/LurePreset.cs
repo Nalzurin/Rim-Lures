@@ -56,6 +56,10 @@ namespace RimLures
             int result = 0;
             foreach (PawnKindDef animal in selectedAnimals.Keys)
             {
+                if (!LureHelper.animalPrices.ContainsKey(animal))
+                {
+                    continue;
+                }
 
                 int count = selectedAnimals[animal];
                 int price = 0;

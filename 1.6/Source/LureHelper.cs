@@ -54,7 +54,7 @@ namespace RimLures
                 {
                     if (def.race == null)
                     {
-                        //Log.Message(def);
+                        continue;
                     }
 
                     float animalPrice = Mathf.Max(def.race.BaseMarketValue / DefOfs.SPFluidCanister.BaseMarketValue, 1f);
@@ -70,7 +70,7 @@ namespace RimLures
             {
                 if (def.race == null)
                 {
-                    //Log.Message(def);
+                    return;
                 }
 
                 float animalPrice = Mathf.Max(def.race.BaseMarketValue / DefOfs.SPFluidCanister.BaseMarketValue, 1f);

@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using System;
+using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -112,8 +113,16 @@ namespace RimLures
             y = 0;
             if (!string.IsNullOrEmpty(searchFilter))
             {
-                Regex rgx = new Regex(searchFilter, RegexOptions.IgnoreCase);
-                List<PawnKindDef> animalsFiltered = LureHelper.animalPrices.Keys.Where(c => rgx.IsMatch(c.defName) || rgx.IsMatch(c.label)).ToList();
+                Regex rgx = null;
+                try
+                {
+                    rgx = new Regex(searchFilter, RegexOptions.IgnoreCase);
+                }
+                catch (ArgumentException)
+                {
+                    rgx = null;
+                }
+                List<PawnKindDef> animalsFiltered = LureHelper.animalPrices.Keys.Where(c => (rgx != null && (rgx.IsMatch(c.defName) || rgx.IsMatch(c.label))) || c.defName.IndexOf(searchFilter, StringComparison.OrdinalIgnoreCase) >= 0 || (c.label != null && c.label.IndexOf(searchFilter, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
                 if (animalsFiltered.Any())
                 {
                     List<PawnKindDef> localAnimals = preset.localBiomes.SelectMany(c => c.AllWildAnimals).ToList().Where(animalsFiltered.Contains).ToList();

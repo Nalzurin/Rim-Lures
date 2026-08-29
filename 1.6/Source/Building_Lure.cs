@@ -33,7 +33,7 @@ namespace RimLures
         public static readonly Texture2D ManagePayloadIcon = ContentFinder<Texture2D>.Get("UI/Designators/ManagePayload");
         public static readonly Texture2D PreparePayloadIcon = ContentFinder<Texture2D>.Get("UI/Designators/PreparePayload");
         public static readonly Texture2D LaunchPayloadIcon = ContentFinder<Texture2D>.Get("UI/Designators/LaunchPayload");
-        public bool PowerOn => this.TryGetComp<CompPowerTrader>().PowerOn;
+        public bool PowerOn => this.TryGetComp<CompPowerTrader>()?.PowerOn ?? false;
 
 
         public CompRefuelable fuelComp => this.TryGetComp<CompRefuelable>();
@@ -43,7 +43,8 @@ namespace RimLures
         {
             get
             {
-                return fuelComp.Fuel >= RimLure_Settings.chemCost;
+                CompRefuelable comp = fuelComp;
+                return comp != null && comp.Fuel >= RimLure_Settings.chemCost;
             }
         }
 
@@ -184,7 +185,7 @@ namespace RimLures
             return false;
         }
 
-        protected override void Tick()
+        public override void Tick()
         {
             //Log.Message("Ticking");
             base.Tick();
@@ -341,11 +342,12 @@ namespace RimLures
             {
                 Command_Action command_Action6 = new Command_Action();
                 command_Action6.defaultLabel = "DEV: Reset cooldown";
-                command_Action6.action = delegate
-                {
-                    coolDownTicksLeft = 0;
-                };
-            }
+            command_Action6.action = delegate
+            {
+                coolDownTicksLeft = 0;
+            };
+            yield return command_Action6;
+        }
 
         }
         public AcceptanceReport CanAcceptPawn(Pawn pawn)
@@ -422,7 +424,7 @@ namespace RimLures
             innerContainer.ClearAndDestroyContents();
             preset.selectedAnimals.Clear();
             preset.UpdateIngredients();
-            fuelComp.ConsumeFuel(RimLure_Settings.chemCost);
+            fuelComp?.ConsumeFuel(RimLure_Settings.chemCost);
             ActiveTransporter activeDropPod = (ActiveTransporter)ThingMaker.MakeThing(ThingDefOf.ActiveDropPod);
             activeDropPod.Contents = new ActiveTransporterInfo();
             FlyShipLeaving flyShipLeaving = (FlyShipLeaving)SkyfallerMaker.MakeSkyfaller(DefOfs.SPFRocketLeaving, activeDropPod);
@@ -431,6 +433,7 @@ namespace RimLures
             flyShipLeaving.worldObjectDef = WorldObjectDefOf.TravellingTransporters;
             GenSpawn.Spawn(flyShipLeaving, Position, Map);
 
+            interacter = null;
 
             if (RimLure_Settings.doCooldownBetweenLaunches)
             {
