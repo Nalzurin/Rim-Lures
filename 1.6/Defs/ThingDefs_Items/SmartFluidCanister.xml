@@ -17,6 +17,9 @@
       <Flammability>0.1</Flammability>
       <WorkToMake>700</WorkToMake>
     </statBases>
+    <thingCategories>
+      <li>Manufactured</li>
+    </thingCategories>
     <costList>
       <MedicineHerbal>1</MedicineHerbal>
       <Neutroamine>1</Neutroamine>
