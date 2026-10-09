@@ -18,7 +18,7 @@ namespace RimLures
         {
             return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
         }
-        protected override IEnumerable<Toil> MakeNewToils()
+        public override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedOrNull(TargetIndex.A);
             this.FailOn(() => Building.State != LureState.Active || Building.interacter == null);

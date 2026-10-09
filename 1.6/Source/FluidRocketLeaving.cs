@@ -11,7 +11,7 @@ namespace RimLures
     public class FluidRocketLeaving : FlyShipLeaving
     {
         private Effecter flightEffecter;
-        protected override void Tick()
+        public override void Tick()
         {
             if (flightEffecter == null)
             {
